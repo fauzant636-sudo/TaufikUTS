@@ -1,0 +1,25 @@
+from Pegawai import Pegawai
+
+class PegawaiKontrak(Pegawai):
+    def __init__(self, id_pegawai, nama, gaji_pokok, durasi_kontrak_bulan, bonus_proyek):
+        super().__init__(id_pegawai, nama, gaji_pokok)
+        if durasi_kontrak_bulan <= 0 or bonus_proyek < 0:
+            raise ValueError("Durasi kontrak atau bonus tidak valid")
+        self.__durasi_kontrak_bulan = durasi_kontrak_bulan
+        self.__bonus_proyek = bonus_proyek
+
+    def get_durasi_kontrak_bulan(self):
+        return self.__durasi_kontrak_bulan
+
+    def get_bonus_proyek(self):
+        return self.__bonus_proyek
+
+    def hitung_gaji(self):
+        return self.get_gaji_pokok() + self.__bonus_proyek
+
+    def tampilkan_info(self):
+        super().tampilkan_info()
+        print("Status     : Pegawai Kontrak")
+        print("Durasi     :", self.get_durasi_kontrak_bulan(), "bulan")
+        print("Bonus      :", self.get_bonus_proyek())
+        print("Total Gaji :", self.hitung_gaji())
