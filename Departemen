@@ -1,0 +1,31 @@
+class Departemen:
+    def __init__(self, kode_departemen, nama_departemen):
+        self.kode_departemen = kode_departemen
+        self.nama_departemen = nama_departemen
+        self.__daftar_pegawai = []
+
+    def tambah_pegawai(self, pegawai):
+        for p in self.__daftar_pegawai:
+            if p.id_pegawai == pegawai.id_pegawai:
+                return False
+        self.__daftar_pegawai.append(pegawai)
+        return True
+
+    def get_daftar_pegawai(self):
+        return self.__daftar_pegawai
+
+    def hitung_total_gaji(self):
+        total = 0
+        for pegawai in self.__daftar_pegawai:
+            total += pegawai.hitung_gaji()
+        return total
+
+    def tampilkan_info(self):
+        print("Kode Departemen :", self.kode_departemen)
+        print("Nama Departemen :", self.nama_departemen)
+        print("Jumlah Pegawai  :", len(self.__daftar_pegawai))
+        print("-" * 35)
+        for pegawai in self.__daftar_pegawai:
+            pegawai.tampilkan_info()
+            print("-" * 35)
+        print("Total Pengeluaran Gaji :", self.hitung_total_gaji())
