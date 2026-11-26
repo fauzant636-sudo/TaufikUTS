@@ -1,0 +1,24 @@
+class Pegawai:
+    def __init__(self, id_pegawai, nama, gaji_pokok):
+        if gaji_pokok < 0:
+            raise ValueError("Gaji pokok tidak valid")
+        self.id_pegawai = id_pegawai
+        self.nama = nama
+        self.__gaji_pokok = gaji_pokok
+
+    def get_gaji_pokok(self):
+        return self.__gaji_pokok
+
+    def ubah_gaji_pokok(self, gaji_baru):
+        if gaji_baru < 0:
+            return False
+        self.__gaji_pokok = gaji_baru
+        return True
+
+    def hitung_gaji(self):
+        return self.__gaji_pokok
+
+    def tampilkan_info(self):
+        print("ID Pegawai :", self.id_pegawai)
+        print("Nama       :", self.nama)
+        print("Gaji Pokok :", self.get_gaji_pokok())
