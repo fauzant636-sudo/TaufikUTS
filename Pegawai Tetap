@@ -1,0 +1,26 @@
+from Pegawai import Pegawai
+
+class PegawaiTetap(Pegawai):
+    def __init__(self, id_pegawai, nama, gaji_pokok, tunjangan):
+        super().__init__(id_pegawai, nama, gaji_pokok)
+        if tunjangan < 0:
+            raise ValueError("Tunjangan tidak valid")
+        self.__tunjangan = tunjangan
+
+    def get_tunjangan(self):
+        return self.__tunjangan
+
+    def ubah_tunjangan(self, tunjangan_baru):
+        if tunjangan_baru < 0:
+            return False
+        self.__tunjangan = tunjangan_baru
+        return True
+
+    def hitung_gaji(self):
+        return self.get_gaji_pokok() + self.__tunjangan
+
+    def tampilkan_info(self):
+        super().tampilkan_info()
+        print("Status     : Pegawai Tetap")
+        print("Tunjangan  :", self.get_tunjangan())
+        print("Total Gaji :", self.hitung_gaji())
